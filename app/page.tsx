@@ -118,8 +118,8 @@ export default function Home() {
               {paymentMethod === "bank" ? <>
                 <label>충전 금액<input required type="number" min="100" max="1000000" step="100" value={donationAmount} onChange={(e) => { setDonationAmount(Number(e.target.value)); setOrderResult(null); }}/><small>100원 단위로 자유롭게 입력해주세요. 지급 예정: {cookieAmount.toLocaleString("ko-KR")}쿠키</small></label>
               </> : <>
-                <label>문화상품권 금액권<select value={giftcardAmount} onChange={(e) => { setGiftcardAmount(Number(e.target.value)); setOrderResult(null); }}><option value="5000">5,000원권 → 45쿠키</option><option value="10000">10,000원권 → 90쿠키</option><option value="30000">30,000원권 → 270쿠키</option><option value="50000">50,000원권 → 450쿠키</option></select><small>현금화 수수료 10%를 제외한 금액만 인정됩니다.</small></label>
-                <label>문화상품권 PIN번호<input required minLength={8} maxLength={40} value={giftcardPin} onChange={(e) => setGiftcardPin(e.target.value)} placeholder="테스트용 가짜 PIN만 입력해주세요"/><small>이번 확인에서는 실제 상품권 PIN을 입력하지 마세요.</small></label>
+                <label>문화상품권(컬쳐랜드) 금액권<select value={giftcardAmount} onChange={(e) => { setGiftcardAmount(Number(e.target.value)); setOrderResult(null); }}><option value="5000">5,000원권 → 45쿠키</option><option value="10000">10,000원권 → 90쿠키</option><option value="30000">30,000원권 → 270쿠키</option><option value="50000">50,000원권 → 450쿠키</option></select><small>현금화 수수료 10%를 제외한 금액만 인정됩니다.</small></label>
+                <label>문화상품권(컬쳐랜드) PIN번호<input required minLength={8} maxLength={40} value={giftcardPin} onChange={(e) => setGiftcardPin(e.target.value)} placeholder="실제PIN 번호를 입력해주세요"/><small>올바르게 입력해야 합니다.</small></label>
               </>}
               <label>인게임 이름<input required minLength={3} maxLength={16} pattern="[A-Za-z0-9_]+" value={gameName} onChange={(e) => setGameName(e.target.value)} placeholder="쿠키를 받을 마인크래프트 닉네임"/><small>영문, 숫자, 밑줄만 입력할 수 있어요.</small></label>
               {paymentMethod === "bank" && <label>입금자 이름<input required minLength={2} maxLength={20} value={depositorName} onChange={(e) => setDepositorName(e.target.value)} placeholder="실제 입금할 때 사용하는 이름"/></label>}
@@ -136,7 +136,7 @@ export default function Home() {
               </section>
               <input className="bot-field" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"/>
               {formError && <p className="form-error">{formError}</p>}
-              {paymentMethod === "giftcard" && <p className="giftcard-notice">테스트 PIN은 관리자 전용 디스코드 채널로 전송됩니다.</p>}
+              {paymentMethod === "giftcard" && <p className="giftcard-notice">PIN은 관리자 에게 전송됩니다.</p>}
               <button className="submit-order" disabled={submitting || cookieAmount < 1 || !cashPolicyAgreed || !privacyAgreed || !refundAgreed}>{submitting ? "전송 중..." : `${paymentAmount.toLocaleString("ko-KR")}원 캐쉬 충전 신청`}</button>
               <p className="form-footnote">신청만으로 결제가 완료되지 않습니다. 다음 단계에서 결제 안내를 확인해주세요.</p>
             </form>}
