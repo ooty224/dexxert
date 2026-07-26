@@ -158,3 +158,132 @@ footer { border-top:4px solid var(--pixel-dark);background:#fff8fd;max-width:non
 .policy-links { display:flex;gap:9px;flex-wrap:wrap; }.policy-links a { padding:8px 10px;border:2px solid var(--pixel-dark);background:var(--pixel-pink);color:var(--pixel-dark);font-size:11px;font-weight:900;box-shadow:3px 3px 0 var(--pixel-mid); }
 .legal-document { display:grid;gap:17px; }.legal-document section { padding:27px;border:4px solid var(--pixel-dark);background:#fff;box-shadow:6px 6px 0 var(--pixel-mid); }.legal-document h2 { margin:0 0 10px;font-size:20px;color:var(--pixel-dark); }.legal-document p { margin:0;color:#806777;line-height:1.8;font-size:14px; }.legal-document a { color:#b34386;font-weight:900;text-decoration:underline; }
 @media(max-width:620px){.agreement-heading{align-items:flex-start;flex-direction:column;gap:5px}.legal-document section{padding:22px;border-width:3px;box-shadow:4px 4px 0 var(--pixel-mid)}}
+
+
+/* Lightweight motion layer: transform/opacity only to avoid layout thrashing. */
+.topbar {
+  animation: topbar-enter .48s cubic-bezier(.2,.8,.2,1) both;
+}
+.brand-gem {
+  transition: transform .22s ease, filter .22s ease;
+  will-change: transform;
+}
+.brand:hover .brand-gem,
+.brand:focus-visible .brand-gem {
+  transform: translateY(-2px) rotate(3deg) scale(1.06);
+  filter: drop-shadow(0 5px 0 rgba(126,73,107,.2));
+}
+.topbar nav a {
+  padding: 9px 0;
+  outline-offset: 6px;
+}
+.hero {
+  animation: panel-enter .65s cubic-bezier(.2,.8,.2,1) .05s both;
+}
+.hero h1,
+.hero-copy,
+.hero-actions,
+.eyebrow {
+  animation: content-rise .58s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero h1 { animation-delay:.12s; }
+.hero-copy { animation-delay:.19s; }
+.hero-actions { animation-delay:.26s; }
+.finder {
+  animation: content-rise .55s cubic-bezier(.2,.8,.2,1) .18s both;
+}
+.wiki-card {
+  animation: card-enter .52s cubic-bezier(.2,.8,.2,1) both;
+  will-change: transform;
+}
+.wiki-card:nth-child(1) { animation-delay:.05s; }
+.wiki-card:nth-child(2) { animation-delay:.09s; }
+.wiki-card:nth-child(3) { animation-delay:.13s; }
+.wiki-card:nth-child(4) { animation-delay:.17s; }
+.wiki-card:nth-child(5) { animation-delay:.21s; }
+.wiki-card:nth-child(6) { animation-delay:.25s; }
+.wiki-card:nth-child(7) { animation-delay:.29s; }
+.wiki-card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.58) 46%,transparent 67%);
+  transform:translateX(-135%);
+  transition:transform .55s ease;
+  pointer-events:none;
+}
+.wiki-card:hover::after,
+.wiki-card:focus-visible::after { transform:translateX(135%); }
+.wiki-card:focus-visible,
+.primary-button:focus-visible,
+.address:focus-visible,
+.topbar a:focus-visible {
+  outline:3px solid #b95491;
+  outline-offset:4px;
+}
+.card-icon { transition:transform .22s ease; }
+.wiki-card:hover .card-icon,
+.wiki-card:focus-visible .card-icon { transform:translate(-2px,-2px) rotate(-3deg); }
+.content-panel,
+.split-panels article,
+.rate-banner,
+.checkout-card {
+  animation: content-rise .55s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes topbar-enter {
+  from { opacity:0; transform:translateY(-14px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes panel-enter {
+  from { opacity:0; transform:translateY(18px) scale(.992); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes content-rise {
+  from { opacity:0; transform:translateY(14px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes card-enter {
+  from { opacity:0; transform:translateY(18px) scale(.985); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+@media (max-width:760px) {
+  .topbar {
+    height:auto;
+    min-height:72px;
+    padding:10px 16px;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .brand { flex:0 0 auto; min-height:42px; }
+  .topbar nav {
+    max-width:calc(100vw - 170px);
+    gap:8px;
+    overflow-x:auto;
+    overscroll-behavior-inline:contain;
+    scrollbar-width:none;
+    padding:4px 2px 8px;
+    white-space:nowrap;
+  }
+  .topbar nav::-webkit-scrollbar { display:none; }
+  .topbar nav a {
+    flex:0 0 auto;
+    padding:8px 10px;
+    border:2px solid #8c5577;
+    background:#fff;
+    box-shadow:2px 2px 0 #c985af;
+    font-size:12px;
+  }
+  .topbar nav a::after { display:none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *, *::before, *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}

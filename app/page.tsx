@@ -7,6 +7,7 @@ const wikiCards = [
   { icon: "🧁", title: "초보자 가이드", text: "첫 접속부터 야생 정착까지 필요한 내용을 순서대로 안내합니다.", tag: "START", href: "/guide" },
   { icon: "🍰", title: "티어", text: "Iron부터 Mythic까지 등급별 홈 개수와 혜택을 확인하세요.", tag: "TIER", href: "/tier" },
   { icon: "📜", title: "규칙", text: "모두가 즐겁게 플레이하기 위해 꼭 지켜야 할 서버 규칙입니다.", tag: "RULES", href: "/rules" },
+  { icon: "✨", title: "인첸트", text: "활성화된 커스텀 인첸트의 적용 장비, 최대 레벨과 상세 효과를 확인하세요.", tag: "ENCHANT", href: "/enchants" },
   { icon: "💬", title: "디스코드", text: "공식 디스코드에서 공지와 서버 소식을 가장 빠르게 확인하세요.", tag: "COMMUNITY", href: "https://discord.gg/GacqH48qsa", external: true },
   { icon: "⭐", title: "마인리스트", text: "마인리스트에서 디저트 서버 정보와 추천 페이지를 확인하세요.", tag: "VOTE", href: "https://minelist.kr/servers/17173-mc.dexxert.kr", external: true },
 ];
@@ -74,7 +75,7 @@ export default function Home() {
           <span className="brand-gem"><img src="/dexxert-icon.png" alt="" /></span><span>DEXXERT <b>공식 사이트</b></span>
         </a>
         <nav aria-label="주요 메뉴">
-          <a href="#server-info">서버 안내</a><a href="#support">캐쉬 충전</a><a href="/rules">규칙</a>
+          <a href="#server-info">서버 안내</a><a href="/enchants">인첸트</a><a href="#support">캐쉬 충전</a><a href="/rules">규칙</a>
         </nav>
       </header>
 
